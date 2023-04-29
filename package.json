@@ -1,0 +1,28 @@
+{
+  "name": "create-reactjs-generator",
+  "description": "Reactjs app generator.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "boilerplate",
+    "generator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seungdeok/create-reactjs-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seungdeok/create-reactjs-generator/issues"
+  },
+  "bin": {
+    "create-reactjs-generator": "./bin/index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "seungdeok",
+  "homepage": "https://github.com/seungdeok/create-reactjs-generator#readme"
+}
