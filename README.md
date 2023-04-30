@@ -16,6 +16,8 @@ This generator is made based on the template in [react-templates](https://github
 
 ## Usage
 
+### 1. npm
+
 ```bash
 $ npx create-reactjs-generator my-app
 $ cd my-app
@@ -24,7 +26,19 @@ $ npm start
 
 </br>
 
+### 2. yarn
+
+```bash
+$ yarn create create-reactjs-generator my-app
+$ cd my-app
+$ yarn start
+```
+
+</br>
+
 ## Development Installation
+
+### 1. npm
 
 ```bash
 $ git clone https://github.com/seungdeok/create-reactjs-generator
@@ -32,6 +46,22 @@ $ cd create-reactjs-generator
 $ npm install
 $ npm link
 $ npx create-reactjs-generator my-app
+$ cd my-app
+$ npm start
+```
+
+</br>
+
+### 2. yarn
+
+```bash
+$ git clone https://github.com/seungdeok/create-reactjs-generator
+$ cd create-reactjs-generator
+$ yarn install
+$ yarn link
+$ yarn create create-reactjs-generator my-app
+$ cd my-app
+$ yarn start
 ```
 
 </br>
