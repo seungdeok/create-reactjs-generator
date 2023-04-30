@@ -34,11 +34,23 @@ function init() {
 
   // copy template to project folder
   console.log("Copy files...");
-  execSync(`sudo cp -r ./template/* ${projectPath}`);
+  execSync(
+    `git clone --depth=1 https://github.com/seungdeok/react-templates.git ${projectPath}`
+  );
   process.chdir(projectPath);
 
+  // remove .git
+  console.log("Remove Template git");
+  execSync("rm - rf .git");
+
+  // Update Rename
+  console.log("Update rename");
+  execSync(
+    `sed -i \'s/"name": "react-templates"/"name": "${projectName}"/g\' package.json`
+  );
+
   // install dependencies
-  console.log("Installing dependencies...");
+  console.log("Installing dependencies");
   execSync("npm install");
 
   // The installation is done
