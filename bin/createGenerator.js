@@ -58,4 +58,4 @@ function init() {
   console.log("this is ready to use!");
 }
 
-export default { init };
+module.exports = { init };
