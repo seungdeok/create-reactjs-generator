@@ -1,7 +1,7 @@
 {
   "name": "create-reactjs-generator",
   "description": "Reactjs app generator.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "keywords": [
     "react",

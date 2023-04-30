@@ -16,22 +16,10 @@ This generator is made based on the template in [react-templates](https://github
 
 ## Usage
 
-### 1. npm
-
 ```bash
 $ npx create-reactjs-generator my-app
 $ cd my-app
 $ npm start
-```
-
-</br>
-
-### 2. yarn
-
-```bash
-$ yarn create create-reactjs-generator my-app
-$ cd my-app
-$ yarn start
 ```
 
 </br>
