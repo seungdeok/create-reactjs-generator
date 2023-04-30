@@ -23,6 +23,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "seungdeok",
+  "author": "seungdeok[jeong9132@gmail.com]",
   "homepage": "https://github.com/seungdeok/create-reactjs-generator#readme"
 }
