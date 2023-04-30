@@ -9,10 +9,10 @@ function init() {
   let useYarn = false;
 
   // Package manager
-  if (process.argv[0].includes('yarn')) {
+  if ((process.env.npm_config_user_agent || '').includes('yarn')) {
     console.log('Using yarn');
     useYarn = true;
-  } else if (process.argv[0].includes('npx')) {
+  } else if ((process.env.npm_config_user_agent || '').includes('npm')) {
     console.log('Using npx');
     useYarn = false;
   } else {
