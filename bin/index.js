@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const { init } = require("./createGenerator");
+const { init } = require('./createGenerator');
 
 init();
