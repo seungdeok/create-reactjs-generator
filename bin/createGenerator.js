@@ -6,36 +6,24 @@ const fs = require('fs');
 
 function init() {
   const startTime = new Date().getTime();
-  let useYarn = false;
 
   // Package manager
-  if ((process.env.npm_config_user_agent || '').includes('yarn')) {
-    console.log('Using yarn');
-    useYarn = true;
-  } else if ((process.env.npm_config_user_agent || '').includes('npm')) {
+  if ((process.env.npm_config_user_agent || '').includes('npm')) {
     console.log('Using npx');
-    useYarn = false;
   } else {
     console.log('Unknown command');
     process.exit(1);
   }
 
   // Check command length
-  if (
-    (useYarn && process.argv.length < 4) ||
-    (!useYarn && process.argv.length < 3)
-  ) {
+  if (process.argv.length < 3) {
     console.log('You have to provide a name to your app.');
     console.log('For example :');
-    if (useYarn) {
-      console.log('  yarn create create-reactjs-generator my-app');
-    } else {
-      console.log('  npx create-reactjs-generator my-app');
-    }
+    console.log('  npx create-reactjs-generator my-app');
     process.exit(1);
   }
 
-  const projectName = useYarn ? process.argv[3] : process.argv[2];
+  const projectName = process.argv[2];
   const currentPath = process.cwd();
   const projectPath = path.join(currentPath, projectName);
   const baseGitRepo = 'https://github.com/seungdeok/react-templates.git';
@@ -96,11 +84,7 @@ function init() {
 
   // Install dependencies
   console.log('Installing dependencies');
-  if (useYarn) {
-    execSync('yarn install');
-  } else {
-    execSync('npm install');
-  }
+  execSync('npm install');
 
   // The installation is done
   const endTime = new Date().getTime();
