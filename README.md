@@ -38,6 +38,15 @@ $ npm start
 
 </br>
 
+## Guide
+
+```bash
+$ npx create-reactjs-generator -v
+$ npx create-reactjs-generator -h
+```
+
+</br>
+
 ## Bug Report
 
 If you find a bug, please report it to me using the [issues](https://github.com/seungdeok/create-reactjs-generator/issues) page on Github.

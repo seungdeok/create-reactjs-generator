@@ -1,29 +1,13 @@
 #!/usr/bin/env node
 
+const { program } = require('commander');
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const packageJsonFile = require('../package.json');
 
-function init() {
+function copyRepo(projectName) {
   const startTime = new Date().getTime();
-
-  // Package manager
-  if ((process.env.npm_config_user_agent || '').includes('npm')) {
-    console.log('Using npx');
-  } else {
-    console.log('Unknown command');
-    process.exit(1);
-  }
-
-  // Check command length
-  if (process.argv.length < 3) {
-    console.log('You have to provide a name to your app.');
-    console.log('For example :');
-    console.log('  npx create-reactjs-generator my-app');
-    process.exit(1);
-  }
-
-  const projectName = process.argv[2];
   const currentPath = process.cwd();
   const projectPath = path.join(currentPath, projectName);
   const baseGitRepo = 'https://github.com/seungdeok/react-templates.git';
@@ -90,6 +74,34 @@ function init() {
   const endTime = new Date().getTime();
   console.log(`The installation is done: ${(endTime - startTime) / 1000}s`);
   console.log('This is ready to use! 🚀');
+}
+
+function init() {
+  program
+    .version(packageJsonFile.version, '-v, --version')
+    .name(packageJsonFile.name);
+
+  program
+    .usage('<projectname>  --template [template]')
+    .description('Create Template')
+    .option('-t, --template [template]', '템플릿명을 입력하세요', 'react')
+    .arguments('<projectname>')
+    .action((projectName) => {
+      const { template } = program.opts();
+      const args = process.argv.slice(2);
+
+      if (args.length > 1) {
+        console.log('Unknown command');
+        program.help();
+        return;
+      }
+
+      console.log('Project Name:', projectName);
+      console.log('Template:', template);
+      copyRepo(projectName);
+    });
+
+  program.parse(process.argv);
 }
 
 module.exports = { init };
