@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 const { program } = require('commander');
 const { execSync } = require('child_process');
 const path = require('path');
