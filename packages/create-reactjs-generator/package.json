@@ -1,0 +1,36 @@
+{
+  "name": "create-reactjs-generator",
+  "version": "1.0.6",
+  "description": "Reactjs app generator.",
+  "keywords": [
+    "react"
+  ],
+  "bin": {
+    "create-reactjs-generator": "./lib/index.js"
+  },
+  "author": "seungdeok <akk9132@naver.com>",
+  "homepage": "https://github.com/seungdeok/create-reactjs-generator",
+  "license": "MIT",
+  "main": "lib/createReactjsGenerator.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seungdeok/create-reactjs-generator.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/createReactjsGenerator.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/seungdeok/create-reactjs-generator/issues"
+  },
+  "dependencies": {
+    "commander": "^10.0.1",
+    "inquirer": "^9.2.7"
+  }
+}
