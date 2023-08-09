@@ -3,16 +3,14 @@
 'use strict';
 
 const { program } = require('commander');
-const { execSync } = require('child_process');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const packageJsonFile = require('../package.json');
 
 function copyRepo(projectName) {
   const startTime = new Date().getTime();
   const currentPath = process.cwd();
   const projectPath = path.join(currentPath, projectName);
-  const baseGitRepo = 'https://github.com/seungdeok/react-templates.git';
 
   // Create project folder
   try {
@@ -32,7 +30,16 @@ function copyRepo(projectName) {
   // Copy template to project folder
   try {
     console.log('Copy files...');
-    execSync(`git clone --depth=1 ${baseGitRepo} ${projectPath}`);
+    const srcDir = path.join(__dirname, '..', 'templates', 'cra-template');
+    const destDir = projectPath;
+
+    if (!fs.existsSync(srcDir)) {
+      console.log('Error: Source directory does not exist.');
+      process.exit(1);
+    }
+
+    fs.copySync(srcDir, destDir);
+
     process.chdir(projectPath);
   } catch (error) {
     console.error(`Error: Failed to Copy files: ${error.message}`);
@@ -40,16 +47,6 @@ function copyRepo(projectName) {
   }
 
   // Remove useless files
-  const gitFolder = path.join(projectPath, '.git');
-  if (fs.existsSync(gitFolder)) {
-    fs.rmdirSync(gitFolder, { recursive: true });
-  }
-
-  const binFolder = path.join(projectPath, 'bin');
-  if (fs.existsSync(binFolder)) {
-    fs.rmdirSync(binFolder, { recursive: true });
-  }
-
   const licenseFile = path.join(projectPath, 'LICENSE');
   if (fs.existsSync(licenseFile)) {
     fs.rmSync(licenseFile, { recursive: true });
@@ -67,10 +64,6 @@ function copyRepo(projectName) {
     console.error(`Error: Failed to update project name: ${error.message}`);
     process.exit(1);
   }
-
-  // Install dependencies
-  console.log('Installing dependencies');
-  execSync('npm install');
 
   // The installation is done
   const endTime = new Date().getTime();
