@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "version": "lerna version",
-    "publish": "lerna publish"
+    "publish": "lerna publish",
+    "publish-package": "lerna publish from-package"
   },
   "workspaces": [
     "packages/*"
