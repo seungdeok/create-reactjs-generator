@@ -7,7 +7,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const packageJsonFile = require('../package.json');
 
-function copyRepo(projectName) {
+function copyRepo(projectName, template) {
   const startTime = new Date().getTime();
   const currentPath = process.cwd();
   const projectPath = path.join(currentPath, projectName);
@@ -30,7 +30,15 @@ function copyRepo(projectName) {
   // Copy template to project folder
   try {
     console.log('Copy files...');
-    const srcDir = path.join(__dirname, '..', 'templates', 'cra-template');
+
+    let target = 'cra-template';
+    if (template === 'next') {
+      target = 'cna-template';
+    } else if (template === 'react') {
+      target = 'cra-template';
+    }
+
+    const srcDir = path.join(__dirname, '..', 'templates', target);
     const destDir = projectPath;
 
     if (!fs.existsSync(srcDir)) {
@@ -79,21 +87,25 @@ function init() {
   program
     .usage('<projectname>  --template [template]')
     .description('Create Template')
-    .option('-t, --template [template]', '템플릿명을 입력하세요', 'react')
+    .option(
+      '-t, --template [template]',
+      '템플릿명을 입력하세요.(react, next)',
+      'react',
+    )
     .arguments('<projectname>')
     .action((projectName) => {
       const { template } = program.opts();
       const args = process.argv.slice(2);
 
-      if (args.length > 1) {
-        console.log('Unknown command');
-        program.help();
-        return;
-      }
+      // if (args.length > 1) {
+      //   console.log('Unknown command');
+      //   program.help();
+      //   return;
+      // }
 
       console.log('Project Name:', projectName);
       console.log('Template:', template);
-      copyRepo(projectName);
+      copyRepo(projectName, template);
     });
 
   program.parse(process.argv);
